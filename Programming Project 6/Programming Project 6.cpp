@@ -4,20 +4,89 @@
 #include <iostream>
 
 using namespace std;
+//Northeast,Southeast, Northwest, and Southwest)
+enum {
+    NORTHEAST,
+    SOUTHEAST,
+    NORTHWEST,
+    SOUTHWEST
+};
+
+double getInput();
+int compareDivisions(double,double,double,double);
+void outputDivisionName(int);
 
 int main()
 {
-    cout << "Hello World!\n";
+    cout << NORTHEAST;
+    cout << SOUTHEAST;
+    double div1Money, div2Money, div3Money, div4Money;
+
+    cout << "Please enter the dollar amount for Div 1\n";
+    div1Money= getInput();
+    cout << "Please enter the dollar amount for Div 2\n";
+    div2Money = getInput();
+    cout << "Please enter the dollar amount for Div 3\n";
+    div3Money = getInput();
+    cout << "Please enter the dollar amount for Div 4\n";
+    div4Money = getInput();
+
+    int bestDivion = compareDivisions(div1Money, div2Money, div3Money, div4Money);
+
+    outputDivisionName(bestDivion);
+
     return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+/// <summary>
+/// Validates input
+/// </summary>
+/// <returns>valid user input</returns>
+double getInput()
+{
+    double dollars;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    cin >> dollars;
+    while (dollars <= 0)
+    {
+        cout << "It must be greatr than 0";
+        cin >> dollars;
+    }
+    return dollars;
+
+}
+/// <summary>
+/// louiatrlkbeg
+/// </summary>
+/// <param name="d1"></param>
+/// <param name="d2"></param>
+/// <param name="d3"></param>
+/// <param name="d4"></param>
+/// <returns></returns>
+int compareDivisions(double d1, double d2, double d3, double d4)
+{
+    if (d1 > d2 && d1 > d3 && d1 > d4)
+        return NORTHEAST;
+
+    else if (d2 > d1 && d2 > d3 && d2 > d4)
+        return SOUTHEAST;
+    else if (d3 > d1 && d3 > d2 && d3 > d4)
+        return NORTHWEST;
+    else if (d4 > d1 && d4 > d3 && d4 > d2)
+        return SOUTHEAST;
+
+
+    return -1;
+}
+
+void outputDivisionName(int divThatOne)
+{
+    if (divThatOne == NORTHEAST)
+    {
+        cout << "NorthEast Won";
+    }
+    else if (divThatOne == SOUTHEAST)
+    {
+        cout << "SouthEast Won";
+    }
+}
