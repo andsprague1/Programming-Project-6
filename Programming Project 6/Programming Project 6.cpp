@@ -45,6 +45,13 @@ int main()
 double getInput()
 {
     double dollars;
+    static int cou = 0;
+    cou++;
+
+    cout << endl << endl;
+    cout << cou;
+    cout << endl << endl;
+
 
     cin >> dollars;
     while (dollars <= 0)
@@ -88,5 +95,17 @@ void outputDivisionName(int divThatOne)
     else if (divThatOne == SOUTHEAST)
     {
         cout << "SouthEast Won";
+    }
+    else if (divThatOne == NORTHWEST)
+    {
+        cout << "Northwest won";
+    }
+    else if (divThatOne == SOUTHWEST)
+    {
+        cout << "SouthWest won";
+    }
+    else
+    {
+        cout << "There was an error";
     }
 }
