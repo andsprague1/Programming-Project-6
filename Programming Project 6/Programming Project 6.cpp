@@ -5,10 +5,37 @@
 
 using namespace std;
 
+
+const double G = 9.81;//
+
+double distanceOverTime(int);
+double pow(double, int);
+
 int main()
 {
-    cout << "Hello World!\n";
+    for (int i = 1; i <= 10; i++)
+    {
+        cout << "The distance after falling " << i
+            << " seconds is" << distanceOverTime(i)<<endl;
+    }
+
+
     return 0;
+}
+double distanceOverTime(int t)
+{
+    double distance;
+    distance = pow(.5 * G * t,2);
+    return distance;
+}
+double pow(double oper, int exp)
+{
+    double s = oper;
+    for (int i = 0; i < exp; i++)
+    {
+        s = s * oper;
+    }
+    return oper;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
