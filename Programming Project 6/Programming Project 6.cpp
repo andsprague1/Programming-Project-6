@@ -2,13 +2,63 @@
 //
 
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
+bool validate(int);
+double finalAverage(int, int, int);
+
 int main()
 {
-    cout << "Hello World!\n";
+    ifstream inFile;
+    inFile.open("scores.txt");
+    int score, lowest, total = 0, count = 1;
+    inFile >> score;
+    if (validate(score) == false)
+    {
+        cout << "Error score invalid for value " << score<<endl;
+        exit(-1);
+    }
+    lowest = score;
+    total = score;
+    while (inFile >> score)
+    {
+        if (validate(score) == false)
+        {
+            cout << "Error score invalid for value " << score << endl;
+            exit(-1);
+        }
+        total += score;
+        if (score < lowest)
+        {
+            lowest = score;
+        }
+        count++;
+
+    }
+
+    inFile.close();
+
+    double finalScore = finalAverage(total, lowest, count);
+    cout << "Your final score was " << finalScore;
     return 0;
+}
+
+/// <summary>
+/// Validates Score
+/// </summary>
+/// <param name="score"></param>
+/// <returns></returns>
+bool validate(int score)
+{
+    return (score >= 0 && score <= 100);
+}
+
+double finalAverage(int total, int lowest, int num)
+{
+    double droppedTotal = total - lowest;
+    return droppedTotal / (num - 1);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
